@@ -5,10 +5,14 @@
         root.isType = factory();
 }(this, function() {
     'use strict';
-    
+
     var cache = {};
     var toString = Object.prototype.toString;
-    return cache[type] = cache[type] || function isType(val) {
-        return toString.call(val).toLowerCase() === '[object ' + type + ']';
+
+
+    return function(type) {
+        return cache[type] = cache[type] || function isType(val) {
+            return toString.call(val).toLowerCase() === '[object ' + type + ']';
+        };
     };
 }));
