@@ -1,2 +1,2 @@
 # js-snippets
-js代码片段
+一些零散的JS代码片段
