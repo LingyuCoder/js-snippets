@@ -23,7 +23,8 @@ define(function(require) {
         '../test/isType',
         '../test/getParams',
         '../test/parseURL',
-        '../test/deepClone'
+        '../test/deepClone',
+        '../test/serialize'
     ], function(require) {
         mocha.run();
     });

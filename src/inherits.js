@@ -21,9 +21,9 @@
     else
         return function inherits(ctor, superCtor) {
             ctor.super_ = superCtor
-            var TempCtor = function() {}
-            TempCtor.prototype = superCtor.prototype
-            ctor.prototype = new TempCtor()
+            var TmpCtor = function() {}
+            TmpCtor.prototype = superCtor.prototype
+            ctor.prototype = new TmpCtor()
             ctor.prototype.constructor = ctor
         };
 }));
