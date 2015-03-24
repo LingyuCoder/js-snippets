@@ -1,23 +1,32 @@
 define(function(require) {
     var should = require('chai').should();
 
-    describe('Each', function() {
+    describe('each', function() {
         var each = require('each');
-        it('Each方法只能遍历除数组、对象', function() {
-            ~function() {
+        it('不能遍历字符串', function() {
+            ~ function() {
                 each('a', function() {});
             }.should.to.throw('Each only used on an object or an array')
-            ~function() {
+        });
+        it('不能遍历数字', function() {
+            ~ function() {
                 each(123, function() {});
             }.should.to.throw('Each only used on an object or an array')
-            ~function() {
-                each(undefined, function() {});
-            }.should.to.throw('Each only used on an object or an array')
-            ~function() {
-                each(null, function() {});
+        });
+        it('不能遍历函数', function() {
+            ~ function() {
+                each(function() {}, function() {});
             }.should.to.throw('Each only used on an object or an array')
         });
-        it('Each方法应当能够正确遍历数组', function() {
+        it('不能遍历Null或Undefined', function() {
+            ~ function() {
+                each(null, function() {});
+            }.should.to.throw('Each only used on an object or an array')
+            ~ function() {
+                each(undefined, function() {});
+            }.should.to.throw('Each only used on an object or an array')
+        });
+        it('能够正确遍历数组', function() {
             var array = [1, 'string', {
                 test: 'test'
             }, undefined, null, function fn() {}];
@@ -27,7 +36,7 @@ define(function(require) {
             });
             rst.should.to.deep.equal(array);
         });
-        it('Each方法应当能够正确遍历对象', function() {
+        it('能够正确遍历对象', function() {
             var obj = {
                 string: 'someString',
                 number: 123,

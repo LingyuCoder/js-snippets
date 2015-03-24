@@ -6,25 +6,32 @@
 }(this, function(each) {
     'use strict';
 
+    var pathRe = /^([^\/])/;
+    var queryRe = /^\?/;
+
+    function parseQuery(str) {
+        var rst = {};
+        str = str.replace(queryRe, '').split('&');
+        each(str, function(val) {
+            if (!val) return;
+            val = val.split('=');
+            rst[val[0]] = val[1];
+        });
+        return rst;
+    }
+
     return function parseURL(url) {
         var a = document.createElement('a');
         a.href = url;
         return {
-            source: url,
+            url: url,
             scheme: a.protocol.replace(':', ''),
             host: a.host,
-            port: a.port || 80,
-            path: a.pathname.replace(/^([^\/])/, '/$1'),
+            hostname: a.hostname,
+            port: parseInt(a.port) || 80,
+            path: a.pathname.replace(pathRe, '/$1'),
             hash: a.hash.replace('#', ''),
-            query: ! function() {
-                var rst = {};
-                var queryStr = a.search.replace(/^\?/, '').split('&');
-                each(queryStr, function(val) {
-                    if (!val) return;
-                    val = val.split('=');
-                    rst[val[0]] = rst[val[1]];
-                });
-            }()
+            query: parseQuery(a.search)
         };
     };
 }));

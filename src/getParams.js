@@ -7,6 +7,7 @@
     'use strict';
 
     var isFunction = isType('function');
+    var isString = isType('string');
     var parseRe = /\(\s*([\s\S]*?)\s*\)/;
     var splitRe = /\s*,\s*/;
 
@@ -18,6 +19,6 @@
             content = fn;
         else
             return void(0);
-        return content.exec(fn)[1].split(splitRe)
+        return /\(\s*([\s\S]*?)\s*\)/.exec(content)[1].split(splitRe)
     };
 }));

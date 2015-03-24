@@ -9,7 +9,7 @@
     var isArray = isType('array');
     var isObject = isType('object');
 
-    function deepClone(obj) {
+    return function deepClone(obj) {
         var rst = isArray(obj) ? [] : {};
         each(obj, function(val, key) {
             rst[key] = (isObject(val) || isArray(val)) ? deepClone(val) : val;

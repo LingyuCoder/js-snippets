@@ -20,6 +20,10 @@ define(function(require) {
 
     require([
         '../test/each',
+        '../test/isType',
+        '../test/getParams',
+        '../test/parseURL',
+        '../test/deepClone'
     ], function(require) {
         mocha.run();
     });
