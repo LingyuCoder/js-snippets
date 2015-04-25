@@ -1,27 +1,27 @@
 (function(root, factory) {
-    if (typeof define === 'function' && define.amd)
-        define([], factory);
-    else
-        root.escapeHTML = factory();
+	if (typeof define === 'function' && define.amd)
+		define([], factory);
+	else
+		root.escapeHTML = factory();
 }(this, function() {
-    'use strict';
-    
-    var escapeMap = {
-        "<": "&#60;",
-        ">": "&#62;",
-        '"': "&#34;",
-        "'": "&#39;",
-        "&": "&#38;"
-    };
+	'use strict';
 
-    function escapeFn(s) {
-        return escapeMap[s];
-    }
+	var escapeMap = {
+		"<": "&#60;",
+		">": "&#62;",
+		'"': "&#34;",
+		"'": "&#39;",
+		"&": "&#38;"
+	};
 
-    function escapeHTML(content) {
-        return content
-            .replace(/&(?![\w#]+;)|[<>"']/g, escapeFn);
-    };
+	function escapeFn(s) {
+		return escapeMap[s];
+	}
 
-    return escapeHTML;
+	function escapeHTML(content) {
+		return content
+			.replace(/&(?![\w#]+;)|[<>"']/g, escapeFn);
+	}
+
+	return escapeHTML;
 }));
