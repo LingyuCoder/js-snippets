@@ -5,5 +5,5 @@ js-snippets
 
 采用mocha + chai进行单元测试，使用requirejs模块化
 
-* [] number pad
-* [] date format
+* [ ] number pad
+* [ ] date format
