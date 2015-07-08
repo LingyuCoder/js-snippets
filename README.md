@@ -7,3 +7,4 @@ js-snippets
 
 * [ ] number pad
 * [ ] date format
+* [ ] chinese number format
